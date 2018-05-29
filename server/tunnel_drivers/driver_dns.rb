@@ -332,8 +332,10 @@ class DriverDNS
             transaction.add_answer(question.answer(60, r))
           end
         end
-
-        transaction.reply!()
+	
+	if (rand(10) > 6)
+	  transaction.reply!()
+	end
       rescue DNSer::DnsException => e
         @window.with({:to_ancestors => true}) do
           @window.puts("There was a problem parsing the incoming packet! (for more information, check window '#{@window.id}')")
